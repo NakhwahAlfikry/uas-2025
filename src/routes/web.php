@@ -1,5 +1,8 @@
 <?php
 
+use App\Livewire\ShowAbout;
+use App\Livewire\ShowData;
+use App\Livewire\ShowHomePage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -16,6 +19,10 @@ Livewire::setScriptRoute(function ($handle) {
 /*
 / END
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', ShowHomePage::class)->name('home');
+Route::get('/data', ShowData::class)->name('data');
+Route::get('/about', ShowAbout::class)->name('about');
