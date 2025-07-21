@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $user1->assignRole('super_admin');
 
         //role petugas gudang
-        $gudangRole = Role::firstOrCreate(['name' => 'gudang_admin']);
+        $gudangRole = Role::firstOrCreate(['name' => 'Petugas_Gudang']);
 
         $gudangPermissions = $allPermissions->filter(function ($perm) {
         return (
@@ -44,8 +44,8 @@ class DatabaseSeeder extends Seeder
 
         // Buat user gudang
         $gudang = User::firstOrCreate(
-            ['email' => 'gudang@admin.com'],
-            ['name' => 'Gudang', 'password' => bcrypt('password')]
+            ['email' => 'petugas@petugas.com'],
+            ['name' => 'Petugas', 'password' => bcrypt('password')]
         );
         $gudang->assignRole($gudangRole);
 

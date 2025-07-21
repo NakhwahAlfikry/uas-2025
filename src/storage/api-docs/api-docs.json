@@ -333,6 +333,211 @@
                     }
                 ]
             }
+        },
+        "/api/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get all transactions",
+                "description": "Returns a list of all transactions.",
+                "operationId": "getTransactions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Transaction"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Create a new transaction",
+                "description": "Stores a new transaction and adjusts item stock.",
+                "operationId": "storeTransaction",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item_id",
+                                    "type",
+                                    "quantity"
+                                ],
+                                "properties": {
+                                    "item_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "masuk"
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Stock update"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Transaction created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions/{id}": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get transaction by ID",
+                "description": "Returns transaction data by ID.",
+                "operationId": "getTransactionById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Delete transaction",
+                "description": "Deletes a transaction record.",
+                "operationId": "deleteTransaction",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deleted successfully"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions/decrypt": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Decrypt transaction response",
+                "description": "Decrypt encrypted transaction response.",
+                "operationId": "decryptTransactionResponse",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "type": "string",
+                                        "example": "eyJpdiI6..."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Decryption successful"
+                    },
+                    "400": {
+                        "description": "Decryption failed"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -383,6 +588,58 @@
                     }
                 },
                 "type": "object"
+            },
+            "Transaction": {
+                "title": "Transaction",
+                "required": [
+                    "id",
+                    "item_id",
+                    "user_id",
+                    "type",
+                    "quantity"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "item_id": {
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "masuk",
+                            "keluar"
+                        ],
+                        "example": "masuk"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "example": 10
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Penambahan stok dari supplier",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-01T12:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-01-02T08:30:00Z"
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -397,6 +654,10 @@
         {
             "name": "Items",
             "description": "Items"
+        },
+        {
+            "name": "Transactions",
+            "description": "Transactions"
         }
     ]
 }
