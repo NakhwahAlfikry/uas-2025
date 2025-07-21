@@ -11,7 +11,7 @@
                             <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
                                 <div class="text-uppercase">Manajemen &middot; Data &middot; Barang</div>
                             </div>
-                            <h1 class="display-3 fw-bolder"><span class="text-gradient d-inline">SELAMAT DATANG</span></h1>
+                            <h1 class="display-3 fw-bolder"><span class="text-gradient d-inline">SIMPLE WAREHOUSE</span></h1>
                             <div class="fs-3 fw-light text-muted">Login untuk mengelola Data</div>
                             <div class="d-grid gap-3 d-sm-flex justify-content-center mt-4">
                                <a href="{{ route('filament.admin.auth.login') }}" class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder">LOGIN</a>
