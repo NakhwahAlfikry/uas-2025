@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Pastikan roles tersedia
+      
         Role::firstOrCreate(['name' => 'super_admin']);
         $allPermissions = Permission::all();
 
-        // User dengan ID 1
+        
         $user1 = User::factory()->create([
             'id' => 1,
             'name' => 'Admin',
@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
         );
         });
 
-        // Sinkronisasi permission ke role gudang_admin
+       
         $gudangRole->syncPermissions($gudangPermissions);
 
-        // Buat user gudang
+
         $gudang = User::firstOrCreate(
             ['email' => 'petugas@petugas.com'],
             ['name' => 'Petugas', 'password' => bcrypt('password')]
@@ -50,7 +50,6 @@ class DatabaseSeeder extends Seeder
         $gudang->assignRole($gudangRole);
 
 
-        // Seeder lainnya
         $this->call([
             CategorySeeder::class,
             ItemSeeder::class,

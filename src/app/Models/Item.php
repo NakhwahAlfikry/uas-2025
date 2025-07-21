@@ -17,20 +17,20 @@ class Item extends Model
         'description',
     ];
 
-    // Relasi: Item milik satu kategori
+ 
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    // Relasi: Item punya banyak transaksi
+   
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
     }
 
 
-    public function getStockAttribute() // override accessor
+    public function getStockAttribute()
 {
     $masuk = $this->transactions()->where('type', 'masuk')->sum('quantity');
     $keluar = $this->transactions()->where('type', 'keluar')->sum('quantity');

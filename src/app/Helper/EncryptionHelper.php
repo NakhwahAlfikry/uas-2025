@@ -8,7 +8,7 @@ class EncryptionHelper
 {
     public static function encrypt($data)
     {
-        // Gunakan APP_KEY atau KEY_ENCRYPT dari .env
+
         $key = env('KEY_ENCRYPT', 'defaultkey');
         return Crypt::encryptString($data, false);
     }

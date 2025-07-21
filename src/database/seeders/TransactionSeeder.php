@@ -9,7 +9,7 @@ class TransactionSeeder extends Seeder
 {
     public function run()
     {
-        // Transaksi masuk
+        
         Transaction::create([
             'item_id' => 1,
             'user_id' => 2,
@@ -18,7 +18,7 @@ class TransactionSeeder extends Seeder
             'description' => 'Penambahan stok awal printer'
         ]);
 
-        // Transaksi keluar
+   
         Transaction::create([
             'item_id' => 2,
             'user_id' => 2,

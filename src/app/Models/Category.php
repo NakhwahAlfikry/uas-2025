@@ -11,7 +11,6 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    // Relasi: Kategori punya banyak item
     public function items()
     {
         return $this->hasMany(Item::class);

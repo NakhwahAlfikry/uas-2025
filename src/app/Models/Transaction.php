@@ -18,13 +18,12 @@ class Transaction extends Model
     ];
     
 
-    // Relasi: Transaksi milik satu user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relasi: Transaksi milik satu item
+  
     public function item()
     {
         return $this->belongsTo(Item::class);
