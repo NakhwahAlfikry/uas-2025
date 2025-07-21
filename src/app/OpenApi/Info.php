@@ -7,7 +7,7 @@ namespace App\OpenApi;
  *     title="My API",
  *     version="1.0.0",
  *     description="This Is API Documentation for My Application",
- *     termsOfService="https://dev.test/terms",
+ *     termsOfService="https://uas.test/terms",
  *     @OA\Contact(
  *         name="API Support",
  *         email="support@example.com"
