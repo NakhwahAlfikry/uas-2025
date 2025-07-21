@@ -1,0 +1,7 @@
+@baseUrl = https://dev.test/api/items
+@cType = application/json
+@apikey = djambred
+###
+GET {{baseUrl}}
+Content-Type: {{cType}}
+X-API-KEY:  {{apikey}}

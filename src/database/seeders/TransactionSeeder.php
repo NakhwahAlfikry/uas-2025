@@ -12,7 +12,7 @@ class TransactionSeeder extends Seeder
         // Transaksi masuk
         Transaction::create([
             'item_id' => 1,
-            'user_id' => 2, // Petugas
+            'user_id' => 2,
             'type' => 'masuk',
             'quantity' => 5,
             'description' => 'Penambahan stok awal printer'

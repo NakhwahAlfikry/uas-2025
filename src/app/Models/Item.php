@@ -28,4 +28,12 @@ class Item extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+
+    public function getStockAttribute() // override accessor
+{
+    $masuk = $this->transactions()->where('type', 'masuk')->sum('quantity');
+    $keluar = $this->transactions()->where('type', 'keluar')->sum('quantity');
+    return max(0, $masuk - $keluar);
+}
 }

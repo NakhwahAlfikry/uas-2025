@@ -16,6 +16,7 @@ class Transaction extends Model
         'quantity',
         'description',
     ];
+    
 
     // Relasi: Transaksi milik satu user
     public function user()
